@@ -114,6 +114,7 @@ body.dark-mode .feature-card {
   color: white;
   padding: 10px 0;
   font-size: 0.85rem;
+  border-radius: 12px 12px 0px 0px;
 }
 
 .top-info-content {
@@ -367,6 +368,7 @@ body.dark-mode .feature-card {
   position: relative;
   height: 85vh;
   overflow: hidden;
+  border-radius: 0px 0px 12px 12px;
 }
 
 .slider-container {
@@ -1059,6 +1061,7 @@ body.dark-mode .stat-card {
 .main-footer {
   background: linear-gradient(135deg, #1e293b, #334155);
   color: white;
+  border-radius: 12px;
   margin-top: 80px;
 }
 
