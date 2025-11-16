@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="لیست کامل دوره‌های آموزشی برنامه‌نویسی - HTML, CSS, JavaScript, PHP, Python">
+    <title>دوره‌های آموزشی - وب آکادمی</title>
+    <link rel="shortcut icon" href="./image/2274766.png" type="image/x-icon">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- فونت Vazirmatn -->
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- لینک به فایل CSS اصلی -->
+    <link rel="stylesheet" href="./css/styl.css">
+</head>
+<body>
+    <!-- نوار بالا -->
+    <div class="top-info-bar">
+        <div class="container">
+            <div class="top-info-content">
+                <div class="contact-info">
+                    <span><i class="fas fa-phone-alt"></i> 021-12345678</span>
+                    <span><i class="fas fa-envelope"></i> info@webacademy.ir</span>
+                </div>
+                <div class="social-links">
+                    <a href="#" aria-label="اینستاگرام"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="تلگرام"><i class="fab fa-telegram"></i></a>
+                    <a href="#" aria-label="لینکدین"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" aria-label="گیت‌هاب"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- نوار ناوبری -->
+    <nav class="main-navbar" id="mainNav">
+        <div class="container">
+            <div class="navbar-content">
+                <div class="logo">
+                    <img src="./image/2274766.png" alt="لوگو">
+                    <span class="logo-text">
+                        <span class="logo-main">وب آکادمی</span>
+                        <span class="logo-sub">مرجع آموزش برنامه‌نویسی</span>
+                    </span>
+                </div>
+
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="./index.html"><i class="fas fa-home"></i> خانه</a></li>
+                    <li><a href="./courses_page.html" class="active"><i class="fas fa-graduation-cap"></i> دوره‌ها</a></li>
+                    <li><a href="./about_page.html"><i class="fas fa-info-circle"></i> درباره ما</a></li>
+                    <li><a href="#blog"><i class="fas fa-blog"></i> وبلاگ</a></li>
+                    <li><a href="./contact_page.html"><i class="fas fa-envelope"></i> تماس</a></li>
+                </ul>
+
+                <div class="nav-actions">
+                    <button class="theme-toggle" id="themeToggle" aria-label="تغییر تم">
+                        <i class="fas fa-sun"></i>
+                    </button>
+                    <button class="search-toggle" id="searchToggle" aria-label="جستجو">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <button class="menu-toggle" id="menuToggle" aria-label="منوی موبایل">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- باکس جستجو -->
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-box-container">
+            <input type="text" id="globalSearch" placeholder="دنبال چه دوره‌ای میگردی؟..." aria-label="جستجوی سراسری">
+            <button class="search-close" id="searchClose"><i class="fas fa-times"></i></button>
+        </div>
+    </div>
+
+    <!-- هدر صفحه -->
+    <header style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.9), rgba(139, 92, 246, 0.8)), url('./image/3.jpg') center/cover; padding: 100px 0 60px; text-align: center; color: white;">
+        <div class="container">
+            <h1 style="font-size: 3rem; font-weight: 800; margin-bottom: 15px;">دوره‌های آموزشی</h1>
+            <p style="font-size: 1.2rem; opacity: 0.95;">از مبتدی تا حرفه‌ای با بهترین اساتید</p>
+        </div>
+    </header>
+
+    <!-- بخش دوره‌ها -->
+    <section class="courses-section" style="padding: 60px 0;">
+        <div class="container">
+            <div class="row">
+                <!-- سایدبار فیلتر -->
+                <div class="col-lg-3 mb-4">
+                    <div class="filter-sidebar">
+                        <h3 class="sidebar-title"><i class="fas fa-filter"></i> فیلتر دوره‌ها</h3>
+
+                        <!-- جستجو -->
+                        <div class="filter-group">
+                            <label><i class="fas fa-search"></i> جستجو</label>
+                            <input type="text" id="courseSearch" class="filter-input" placeholder="نام دوره را بنویسید...">
+                        </div>
+
+                        <!-- دسته‌بندی -->
+                        <div class="filter-group">
+                            <label><i class="fas fa-th-large"></i> دسته‌بندی</label>
+                            <div class="category-chips">
+                                <button class="chip active" data-category="all">همه</button>
+                                <button class="chip" data-category="frontend">فرانت‌اند</button>
+                                <button class="chip" data-category="backend">بک‌اند</button>
+                                <button class="chip" data-category="database">دیتابیس</button>
+                                <button class="chip" data-category="tools">ابزارها</button>
+                            </div>
+                        </div>
+
+                        <!-- سطح دوره -->
+                        <div class="filter-group">
+                            <label><i class="fas fa-layer-group"></i> سطح دوره</label>
+                            <div class="level-options">
+                                <label class="level-option">
+                                    <input type="radio" name="level" value="all" checked>
+                                    <span>همه سطوح</span>
+                                </label>
+                                <label class="level-option">
+                                    <input type="radio" name="level" value="beginner">
+                                    <span>مقدماتی</span>
+                                </label>
+                                <label class="level-option">
+                                    <input type="radio" name="level" value="intermediate">
+                                    <span>متوسط</span>
+                                </label>
+                                <label class="level-option">
+                                    <input type="radio" name="level" value="advanced">
+                                    <span>پیشرفته</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- مرتب‌سازی -->
+                        <div class="filter-group">
+                            <label><i class="fas fa-sort"></i> مرتب‌سازی</label>
+                            <select class="filter-input" id="sortSelect">
+                                <option value="popular">محبوب‌ترین</option>
+                                <option value="newest">جدیدترین</option>
+                                <option value="rating">بیشترین امتیاز</option>
+                                <option value="students">بیشترین دانشجو</option>
+                            </select>
+                        </div>
+
+                        <!-- لینک‌های سریع -->
+                        <div class="filter-group">
+                            <label><i class="fas fa-bolt"></i> دسترسی سریع</label>
+                            <ul class="quick-links">
+                                <li><a href="#"><i class="fas fa-question-circle"></i> سوالات متداول</a></li>
+                                <li><a href="#"><i class="fas fa-headset"></i> پشتیبانی</a></li>
+                                <li><a href="#"><i class="fas fa-download"></i> منابع رایگان</a></li>
+                                <li><a href="#"><i class="fas fa-blog"></i> وبلاگ آموزشی</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- دکمه مشاوره -->
+                        <button class="consultation-btn">
+                            <i class="fas fa-comments"></i>
+                            مشاوره رایگان
+                        </button>
+                    </div>
+                </div>
+
+                <!-- کارت‌های دوره -->
+                <div class="col-lg-9">
+                    <!-- نوار نتایج -->
+                    <div style="background: white; padding: 15px 20px; border-radius: 12px; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                        <div style="font-weight: 600; color: #64748b;">
+                            <i class="fas fa-graduation-cap" style="color: #6366f1;"></i>
+                            <span id="courseCount">9</span> دوره آموزشی یافت شد
+                        </div>
+                        <div style="display: flex; gap: 10px;">
+                            <button id="gridView" class="view-btn active" title="نمایش شبکه‌ای">
+                                <i class="fas fa-th"></i>
+                            </button>
+                            <button id="listView" class="view-btn" title="نمایش لیستی">
+                                <i class="fas fa-list"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="courses-grid" id="coursesGrid">
+                        <!-- HTML -->
+                        <div class="course-card" data-category="frontend" data-level="beginner" data-title="HTML5" data-rating="4.8" data-students="2450" data-date="2024-01">
+                            <div class="course-badge">محبوب</div>
+                            <div class="course-image">
+                                <img src="./image/html.png" alt="آموزش HTML5">
+                                <div class="course-overlay">
+                                    <a href="./course/html/index.html" class="quick-view">مشاهده سریع</a>
+                                </div>
+                            </div>
+                            <div class="course-content">
+                                <div class="course-meta">
+                                    <span class="course-level beginner"><i class="fas fa-signal"></i> مقدماتی</span>
+                                    <span class="course-duration"><i class="far fa-clock"></i> 12 ساعت</span>
+                                </div>
+                                <h3 class="course-title">آموزش جامع HTML5</h3>
+                                <p class="course-desc">یادگیری استانداردهای HTML5 و ساخت ساختار صفحات وب مدرن</p>
+                                <div class="course-footer">
+                                    <div class="course-rating">
+                                        <i class="fas fa-star"></i>
+                                        <span>4.8</span>
+                                        <span class="students">(2,450 دانشجو)</span>
+                                    </div>
+                                    <a href="./course/html/index.html" class="btn-enroll">شروع دوره <i class="fas fa-arrow-left"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CSS -->
+                        <div class="course-card" data-category="frontend" data-level="beginner" data-title="CSS3" data-rating="4.9" data-students="3120" data-date="2024-02">
+                            <div class="course-badge new">جدید</div>
+                            <div class="course-image">
+                                <img src="./image/css.png" alt="آموزش CSS3">
+                                <div class="course-overlay">
+                                    <a href="./course/css/index.html" class="quick-view">مشاهده سریع</a>
+                                </div>
+                            </div>
+                            <div class="course-content">
+                                <div class="course-meta">
+                                    <span class="course-level beginner"><i class="fas fa-signal"></i> مقدماتی</span>
+                                    <span class="course-duration"><i class="far fa-clock"></i> 18 ساعت</span>
+                                </div>
+                                <h3 class="course-title">CSS3 پیشرفته</h3>
+                                <p class="course-desc">طراحی رابط‌های زیبا و واکنش‌گرا با Flexbox، Grid و Animation</p>
+                                <div class="course-footer">
+                                    <div class="course-rating">
+                                        <i class="fas fa-star"></i>
+                                        <span>4.9</span>
+                                        <span class="students">(3,120 دانشجو)</span>
+                                    </div>
+                                    <a href="./course/css/index.html" class="btn-enroll">شروع دوره <i class="fas fa-arrow-left"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- JavaScript -->
+                        <div class="course-card" data-category="frontend" data-level="intermediate" data-title="JavaScript" data-rating="5.0" data-students="5680" data-date="2023-12">
+                            <div class="course-badge">پرفروش</div>
+                            <div class="course-image">
+                                <img src="./image/js.png" alt="آموزش JavaScript">
+                                <div class="course-overlay">
+                                    <a href="./course/js/index.html" class="quick-view">مشاهده سریع</a>
+                                </div>
+                            </div>
+                            <div class="course-content">
+                                <div class="course-meta">
+                                    <span class="course-level intermediate"><i class="fas fa-signal"></i> متوسط</span>
+                                    <span class="course-duration"><i class="far fa-clock"></i> 35 ساعت</span>
+                                </div>
+                                <h3 class="course-title">JavaScript مدرن (ES6+)</h3>
+                                <p class="course-desc">یادگیری جاوااسکریپت از صفر تا پیشرفته با پروژه‌های عملی</p>
+                                <div class="course-footer">
+                                    <div class="course-rating">
+                                        <i class="fas fa-star"></i>
+                                        <span>5.0</span>
+                                        <span class="students">(5,680 دانشجو)</span>
+                                    </div>
+                                    <a href="./course/js/index.html" class="btn-enroll">شروع دوره <i class="fas fa-arrow-left"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PHP -->
+                        <div class="course-card" data-category="backend" data-level="intermediate" data-title="PHP" data-rating="4.7" data-students="1890" data-date="2023-11">
+                            <div class="course-image">
+                                <img src="./image/php.png" alt="آموزش PHP">
+                                <div class="course-overlay">
+                                    <a href="#" class="quick-view">مشاهده سریع</a>
+                                </div>
+                            </div>
+                            <div class="course-content">
+                                <div class="course-meta">
+                                    <span class="course-level intermediate"><i class="fas fa-signal"></i> متوسط</span>
+                                    <span class="course-duration"><i class="far fa-clock"></i> 40 ساعت</span>
+                                </div>
+                                <h3 class="course-title">PHP از صفر تا حرفه‌ای</h3>
+                                <p class="course-desc">توسعه وب با PHP و Laravel - ساخت سایت‌های داینامیک</p>
+                                <div class="course-footer">
+                                    <div class="course-rating">
+                                        <i class="fas fa-star"></i>
+                                        <span>4.7</span>
+                                        <span class="students">(1,890 دانشجو)</span>
+                                    </div>
+                                    <a href="#" class="btn-enroll">شروع دوره <i class="fas fa-arrow-left"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Python -->
+                        <div class="course-card" data-category="backend" data-level="beginner" data-title="Python" data-rating="4.9" data-students="4230" data-date="2024-01">
+                            <div class="course-badge">محبوب</div>
+                            <div class="course-image">
+                                <img src="./image/python.png" alt="آموزش Python">
+                                <div class="course-overlay">
+                                    <a href="#" class="quick-view">مشاهده سریع</a>
+                                </div>
+                            </div>
+                            <div class="course-content">
+                                <div class="course-meta">
+                                    <span class="course-level beginner"><i class="fas fa-signal"></i> مقدماتی</span>
+                                    <span class="course-duration"><i class="far fa-clock"></i> 30 ساعت</span>
+                                </div>
+                                <h3 class="course-title">Python برای توسعه‌دهندگان</h3>
+                                <p class="course-desc">پایتون برای وب، دیتا ساینس، اتوماسیون و یادگیری ماشین</p>
+                                <div class="course-footer">
+                                    <div class="course-rating">
+                                        <i class="fas fa-star"></i>
+                                        <span>4.9</span>
+                                        <span class="students">(4,230 دانشجو)</span>
+                                    </div>
+                                    <a href="#" class="btn-enroll">شروع دوره <i class="fas fa-arrow-left"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bootstrap -->
+                        <div class="course-card" data-category="frontend" data-level="beginner" data-title="Bootstrap" data-rating="4.6" data-students="2150" data-date="2023-10">
+                            <div class="course-image">
+                                <img src="./image/boot.png" alt="آموزش Bootstrap">
+                                <div class="course-overlay">
+                                    <a href="#" class="quick-view">مشاهده سریع</a>
+                                </div>
+                            </div>
+                            <div class="course-content">
+                                <div class="course-meta">
+                                    <span class="course-level beginner"><i class="fas fa-signal"></i> مقدماتی</span>
+                                    <span class="course-duration"><i class="far fa-clock"></i> 14 ساعت</span>
+                                </div>
+                                <h3 class="course-title">Bootstrap 5 مدرن</h3>
+                                <p class="course-desc">طراحی سریع و واکنش‌گرای سایت با آخرین نسخه Bootstrap</p>
+                                <div class="course-footer">
+                                    <div class="course-rating">
+                                        <i class="fas fa-star"></i>
+                                        <span>4.6</span>
+                                        <span class="students">(2,150 دانشجو)</span>
+                                    </div>
+                                    <a href="#" class="btn-enroll">شروع دوره <i class="fas fa-arrow-left"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- MySQL -->
+                        <div class="course-card" data-category="database" data-level="intermediate" data-title="MySQL" data-rating="4.8" data-students="1670" data-date="2023-09">
+                            <div class="course-image">
+                                <img src="./image/mysql.png" alt="آموزش MySQL">
+                                <div class="course-overlay">
+                                    <a href="#" class="quick-view">مشاهده سریع</a>
+                                </div>
+                            </div>
+                            <div class="course-content">
+                                <div class="course-meta">
+                                    <span class="course-level intermediate"><i class="fas fa-signal"></i> متوسط</span>
+                                    <span class="course-duration"><i class="far fa-clock"></i> 22 ساعت</span>
+                                </div>
+                                <h3 class="course-title">پایگاه داده MySQL</h3>
+                                <p class="course-desc">طراحی و مدیریت دیتابیس، کوئری‌نویسی و بهینه‌سازی</p>
+                                <div class="course-footer">
+                                    <div class="course-rating">
+                                        <i class="fas fa-star"></i>
+                                        <span>4.8</span>
+                                        <span class="students">(1,670 دانشجو)</span>
+                                    </div>
+                                    <a href="#" class="btn-enroll">شروع دوره <i class="fas fa-arrow-left"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- WordPress -->
+                        <div class="course-card" data-category="tools" data-level="beginner" data-title="WordPress" data-rating="4.5" data-students="1340" data-date="2024-02">
+                            <div class="course-badge new">جدید</div>
+                            <div class="course-image">
+                                <img src="./image/wordpress.png" alt="آموزش WordPress">
+                                <div class="course-overlay">
+                                    <a href="#" class="quick-view">مشاهده سریع</a>
+                                </div>
+                            </div>
+                            <div class="course-content">
+                                <div class="course-meta">
+                                    <span class="course-level beginner"><i class="fas fa-signal"></i> مقدماتی</span>
+                                    <span class="course-duration"><i class="far fa-clock"></i> 16 ساعت</span>
+                                </div>
+                                <h3 class="course-title">WordPress حرفه‌ای</h3>
+                                <p class="course-desc">ساخت سایت بدون کد و توسعه تم و پلاگین سفارشی</p>
+                                <div class="course-footer">
+                                    <div class="course-rating">
+                                        <i class="fas fa-star"></i>
+                                        <span>4.5</span>
+                                        <span class="students">(1,340 دانشجو)</span>
+                                    </div>
+                                    <a href="#" class="btn-enroll">شروع دوره <i class="fas fa-arrow-left"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Git -->
+                        <div class="course-card" data-category="tools" data-level="beginner" data-title="Git GitHub" data-rating="4.7" data-students="2890" data-date="2023-08">
+                            <div class="course-image">
+                                <img src="./image/git.png" alt="آموزش Git">
+                                <div class="course-overlay">
+                                    <a href="#" class="quick-view">مشاهده سریع</a>
+                                </div>
+                            </div>
+                            <div class="course-content">
+                                <div class="course-meta">
+                                    <span class="course-level beginner"><i class="fas fa-signal"></i> مقدماتی</span>
+                                    <span class="course-duration"><i class="far fa-clock"></i> 10 ساعت</span>
+                                </div>
+                                <h3 class="course-title">Git & GitHub مقدماتی</h3>
+                                <p class="course-desc">مدیریت نسخه، همکاری تیمی و استقرار پروژه‌ها</p>
+                                <div class="course-footer">
+                                    <div class="course-rating">
+                                        <i class="fas fa-star"></i>
+                                        <span>4.7</span>
+                                        <span class="students">(2,890 دانشجو)</span>
+                                    </div>
+                                    <a href="#" class="btn-enroll">شروع دوره <i class="fas fa-arrow-left"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- پیام خالی -->
+                    <div id="noResults" style="display: none; text-align: center; padding: 60px 20px;">
+                        <i class="fas fa-search" style="font-size: 4rem; color: #cbd5e1; margin-bottom: 20px;"></i>
+                        <h3 style="color: #64748b; font-weight: 600;">دوره‌ای یافت نشد</h3>
+                        <p style="color: #94a3b8;">لطفاً فیلترهای دیگری را امتحان کنید</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- فوتر -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="container">
+                <div class="row g-4">
+                    <div class="col-lg-4">
+                        <div class="footer-logo">
+                            <img src="./image/2274766.png" alt="لوگو">
+                            <span>وب آکادمی</span>
+                        </div>
+                        <p class="footer-desc">
+                            ما با هدف آموزش برنامه‌نویسی به زبان فارسی و با کیفیت جهانی، بستری مناسب برای رشد و
+                            توسعه مهارت‌های برنامه‌نویسی شما فراهم کرده‌ایم.
+                        </p>
+                        <div class="footer-social">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-telegram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-8">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h4 style="color: white; margin-bottom: 20px;">دسترسی سریع</h4>
+                                <ul style="list-style: none; padding: 0;">
+                                    <li style="margin-bottom: 10px;"><a href="./index.html" style="color: rgba(255,255,255,0.8); text-decoration: none;">خانه</a></li>
+                                    <li style="margin-bottom: 10px;"><a href="./courses_page.html" style="color: rgba(255,255,255,0.8); text-decoration: none;">دوره‌ها</a></li>
+                                    <li style="margin-bottom: 10px;"><a href="./about_page.html" style="color: rgba(255,255,255,0.8); text-decoration: none;">درباره ما</a></li>
+                                    <li style="margin-bottom: 10px;"><a href="./contact_page.html" style="color: rgba(255,255,255,0.8); text-decoration: none;">تماس با ما</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="col-md-4">
+                                <h4 style="color: white; margin-bottom: 20px;">دوره‌های محبوب</h4>
+                                <ul style="list-style: none; padding: 0;">
+                                    <li style="margin-bottom: 10px;"><a href="#" style="color: rgba(255,255,255,0.8); text-decoration: none;">HTML & CSS</a></li>
+                                    <li style="margin-bottom: 10px;"><a href="#" style="color: rgba(255,255,255,0.8); text-decoration: none;">JavaScript</a></li>
+                                    <li style="margin-bottom: 10px;"><a href="#" style="color: rgba(255,255,255,0.8); text-decoration: none;">PHP</a></li>
+                                    <li style="margin-bottom: 10px;"><a href="#" style="color: rgba(255,255,255,0.8); text-decoration: none;">Python</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="col-md-4">
+                                <h4 style="color: white; margin-bottom: 20px;">تماس با ما</h4>
+                                <ul style="list-style: none; padding: 0; color: rgba(255,255,255,0.8);">
+                                    <li style="margin-bottom: 10px;"><i class="fas fa-phone"></i> 021-12345678</li>
+                                    <li style="margin-bottom: 10px;"><i class="fas fa-envelope"></i> info@webacademy.ir</li>
+                                    <li style="margin-bottom: 10px;"><i class="fas fa-map-marker-alt"></i> تهران، خیابان ولیعصر</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <p class="copyright-text">© 1404 وب آکادمی. تمامی حقوق محفوظ است.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- دکمه بازگشت به بالا -->
+    <button class="scroll-to-top" id="scrollToTop" aria-label="بازگشت به بالا">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // استایل دکمه‌های نمایش
+        const style = document.createElement('style');
+        style.textContent = `
+            .view-btn {
+                width: 40px;
+                height: 40px;
+                border: 2px solid #e2e8f0;
+                background: white;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: all 0.3s;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #64748b;
+            }
+            .view-btn:hover, .view-btn.active {
+                background: linear-gradient(135deg, #6366f1, #8b5cf6);
+                color: white;
+                border-color: transparent;
+            }
+            body.dark-mode .view-btn {
+                background: rgba(30, 41, 59, 0.8);
+                border-color: #334155;
+            }
+        `;
+        document.head.appendChild(style);
+
+        // تم تاریک/روشن
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const themeIcon = themeToggle.querySelector('i');
+
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // منوی موبایل
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!menuToggle.contains(e.target) && !navMenu.contains(e.target)) {
+                menuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+
+        // جستجوی سراسری
+        const searchToggle = document.getElementById('searchToggle');
+        const searchOverlay = document.getElementById('searchOverlay');
+        const searchClose = document.getElementById('searchClose');
+        const globalSearch = document.getElementById('globalSearch');
+
+        searchToggle.addEventListener('click', () => {
+            searchOverlay.classList.add('active');
+            setTimeout(() => globalSearch.focus(), 300);
+        });
+
+        searchClose.addEventListener('click', () => {
+            searchOverlay.classList.remove('active');
+            globalSearch.value = '';
+        });
+
+        searchOverlay.addEventListener('click', (e) => {
+            if (e.target === searchOverlay) {
+                searchOverlay.classList.remove('active');
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && searchOverlay.classList.contains('active')) {
+                searchOverlay.classList.remove('active');
+            }
+        });
+
+        // فیلتر و مرتب‌سازی دوره‌ها
+        const courseSearch = document.getElementById('courseSearch');
+        const categoryChips = document.querySelectorAll('.chip');
+        const levelOptions = document.querySelectorAll('.level-option input');
+        const sortSelect = document.getElementById('sortSelect');
+        const coursesGrid = document.getElementById('coursesGrid');
+        const courseCards = document.querySelectorAll('.course-card');
+        const courseCount = document.getElementById('courseCount');
+        const noResults = document.getElementById('noResults');
+
+        function filterAndSortCourses() {
+            const searchTerm = courseSearch.value.toLowerCase().trim();
+            const activeCategory = document.querySelector('.chip.active')?.dataset.category || 'all';
+            const activeLevel = document.querySelector('.level-option input:checked')?.value || 'all';
+            const sortBy = sortSelect.value;
+
+            let visibleCards = Array.from(courseCards).filter(card => {
+                const title = card.dataset.title?.toLowerCase() || '';
+                const category = card.dataset.category || '';
+                const level = card.dataset.level || '';
+                
+                const matchesSearch = searchTerm === '' || title.includes(searchTerm);
+                const matchesCategory = activeCategory === 'all' || category === activeCategory;
+                const matchesLevel = activeLevel === 'all' || level === activeLevel;
+                
+                return matchesSearch && matchesCategory && matchesLevel;
+            });
+
+            // مرتب‌سازی
+            visibleCards.sort((a, b) => {
+                switch(sortBy) {
+                    case 'newest':
+                        return b.dataset.date.localeCompare(a.dataset.date);
+                    case 'rating':
+                        return parseFloat(b.dataset.rating) - parseFloat(a.dataset.rating);
+                    case 'students':
+                        return parseInt(b.dataset.students) - parseInt(a.dataset.students);
+                    default: // popular
+                        return parseInt(b.dataset.students) - parseInt(a.dataset.students);
+                }
+            });
+
+            // مخفی کردن همه
+            courseCards.forEach(card => card.style.display = 'none');
+
+            // نمایش کارت‌های فیلتر شده
+            visibleCards.forEach((card, index) => {
+                card.style.display = 'block';
+                card.style.animation = `fadeInUp 0.5s ease ${index * 0.1}s backwards`;
+                coursesGrid.appendChild(card);
+            });
+
+            // به‌روزرسانی تعداد
+            courseCount.textContent = visibleCards.length;
+
+            // نمایش پیام خالی
+            if (visibleCards.length === 0) {
+                noResults.style.display = 'block';
+            } else {
+                noResults.style.display = 'none';
+            }
+        }
+
+        // رویدادهای فیلتر
+        courseSearch.addEventListener('input', filterAndSortCourses);
+        sortSelect.addEventListener('change', filterAndSortCourses);
+
+        categoryChips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                categoryChips.forEach(c => c.classList.remove('active'));
+                chip.classList.add('active');
+                filterAndSortCourses();
+            });
+        });
+
+        levelOptions.forEach(option => {
+            option.addEventListener('change', filterAndSortCourses);
+        });
+
+        // تغییر نمایش (شبکه‌ای/لیستی)
+        const gridView = document.getElementById('gridView');
+        const listView = document.getElementById('listView');
+
+        gridView.addEventListener('click', () => {
+            gridView.classList.add('active');
+            listView.classList.remove('active');
+            coursesGrid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(300px, 1fr))';
+        });
+
+        listView.addEventListener('click', () => {
+            listView.classList.add('active');
+            gridView.classList.remove('active');
+            coursesGrid.style.gridTemplateColumns = '1fr';
+        });
+
+        // دکمه بازگشت به بالا
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 500) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // دکمه مشاوره
+        const consultationBtn = document.querySelector('.consultation-btn');
+        if (consultationBtn) {
+            consultationBtn.addEventListener('click', () => {
+                alert('به زودی با شما تماس خواهیم گرفت!\n\nلطفاً شماره تماس خود را در بخش تماس با ما ثبت کنید.');
+            });
+        }
+
+        // جستجوی سراسری
+        globalSearch.addEventListener('input', (e) => {
+            courseSearch.value = e.target.value;
+            filterAndSortCourses();
+        });
+
+        // انیمیشن ورود عناصر
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.course-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // اسکرول نرم
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#' || href === '') return;
+                
+                e.preventDefault();
+                const target = document.querySelector(href);
+                
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // ذخیره فیلترها در localStorage
+        window.addEventListener('beforeunload', () => {
+            const filters = {
+                search: courseSearch.value,
+                category: document.querySelector('.chip.active')?.dataset.category,
+                level: document.querySelector('.level-option input:checked')?.value,
+                sort: sortSelect.value
+            };
+            localStorage.setItem('courseFilters', JSON.stringify(filters));
+        });
+
+        // بازیابی فیلترها
+        window.addEventListener('load', () => {
+            const savedFilters = localStorage.getItem('courseFilters');
+            if (savedFilters) {
+                const filters = JSON.parse(savedFilters);
+                
+                if (filters.search) {
+                    courseSearch.value = filters.search;
+                }
+                
+                if (filters.category) {
+                    categoryChips.forEach(chip => {
+                        if (chip.dataset.category === filters.category) {
+                            chip.click();
+                        }
+                    });
+                }
+                
+                if (filters.level) {
+                    levelOptions.forEach(option => {
+                        if (option.value === filters.level) {
+                            option.checked = true;
+                        }
+                    });
+                }
+                
+                if (filters.sort) {
+                    sortSelect.value = filters.sort;
+                }
+                
+                filterAndSortCourses();
+            }
+        });
+    </script>
+</body>
+</html>
