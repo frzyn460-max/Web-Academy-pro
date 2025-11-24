@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="آموزش کامل PHP از صفر تا صد - برنامه‌نویسی سمت سرور">
+    <title>دوره آموزش PHP - وب آکادمی</title>
+    <link rel="shortcut icon" href="../../image/2274766.png" type="image/x-icon">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- فونت Vazirmatn -->
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #7377ad;
+            --secondary-color: #8892c5;
+            --accent-color: #264de4;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --dark-color: #1e1e1e;
+            --light-color: #ffffff;
+            --text-dark: #2d2d2d;
+            --text-light: #666666;
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 2px 8px rgba(115, 119, 173, 0.1);
+            --shadow-md: 0 4px 12px rgba(115, 119, 173, 0.15);
+            --shadow-lg: 0 10px 30px rgba(115, 119, 173, 0.2);
+            --shadow-xl: 0 20px 40px rgba(115, 119, 173, 0.25);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 20px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background: linear-gradient(135deg, #f3f0ff 0%, #ede9fe 100%);
+            color: var(--text-dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* تم تاریک */
+        body.dark-mode {
+            --light-color: #1a1a1a;
+            --dark-color: #f8fafc;
+            --text-dark: #f1f5f9;
+            --text-light: #cbd5e1;
+            --border-color: #3a3a3a;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+        }
+
+        body.dark-mode .main-navbar,
+        body.dark-mode .course-card,
+        body.dark-mode .lesson-item,
+        body.dark-mode .info-box {
+            background: rgba(30, 30, 30, 0.95);
+            border-color: #3a3a3a;
+        }
+
+        /* نوار بالایی */
+        .top-info-bar {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 10px 0;
+            font-size: 0.85rem;
+            border-radius: 12px 12px 0px 0px;
+        }
+
+        .top-info-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 25px;
+        }
+
+        .contact-info span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .social-links a {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            color: white;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px) rotate(10deg);
+        }
+
+        /* نوار ناوبری */
+        .main-navbar {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 12px rgba(115, 119, 173, 0.1);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        .navbar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-dark);
+        }
+
+        .logo img {
+            width: 45px;
+            height: 45px;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+        }
+
+        .logo:hover img {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-main {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--primary-color);
+        }
+
+        .logo-sub {
+            font-size: 0.7rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 5px;
+            margin: 0;
+        }
+
+        .nav-menu li a {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 18px;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-menu li a::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .nav-menu li a:hover::after,
+        .nav-menu li a.active::after {
+            width: 70%;
+        }
+
+        .nav-menu li a:hover,
+        .nav-menu li a.active {
+            background: linear-gradient(135deg, rgba(115, 119, 173, 0.1), rgba(136, 146, 197, 0.1));
+            color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .theme-toggle {
+            width: 42px;
+            height: 42px;
+            border: 2px solid var(--primary-color);
+            border-radius: 50%;
+            background: var(--light-color);
+            color: var(--primary-color);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: rotate(20deg) scale(1.1);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            width: 42px;
+            height: 42px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .menu-toggle span {
+            width: 100%;
+            height: 3px;
+            background: var(--primary-color);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        /* هدر دوره */
+        .course-header {
+            background: linear-gradient(135deg, rgba(115, 119, 173, 0.95), rgba(136, 146, 197, 0.9));
+            padding: 60px 0;
+            color: white;
+            border-radius: 0px 0px 12px 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-header::before {
+            content: '<?php ?>';
+            position: absolute;
+            font-size: 12rem;
+            font-weight: 900;
+            opacity: 0.05;
+            right: -50px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-family: monospace;
+        }
+
+        .course-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.25);
+            padding: 8px 20px;
+            border-radius: var(--radius-xl);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .course-header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .course-header p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            margin-bottom: 30px;
+        }
+
+        .course-stats {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 15px 25px;
+            border-radius: var(--radius-md);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .stat-item:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-5px);
+        }
+
+        .stat-item i {
+            font-size: 1.8rem;
+        }
+
+        /* بخش محتوا */
+        .course-content {
+            padding: 60px 0;
+        }
+
+        .course-card {
+            background: white;
+            padding: 30px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            border: 2px solid transparent;
+            margin-bottom: 30px;
+            transition: var(--transition);
+        }
+
+        .course-card:hover {
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary-color);
+        }
+
+        /* لیست درس‌ها */
+        .lessons-list {
+            list-style: none;
+        }
+
+        .lesson-item {
+            background: white;
+            border: 2px solid var(--border-color);
+            border-right: 5px solid var(--primary-color);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            margin-bottom: 15px;
+            transition: var(--transition);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .lesson-item:hover {
+            border-color: var(--primary-color);
+            transform: translateX(5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .lesson-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex: 1;
+        }
+
+        .lesson-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 12px rgba(115, 119, 173, 0.3);
+        }
+
+        .lesson-details h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--text-dark);
+        }
+
+        .lesson-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .lesson-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .lesson-action {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .start-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 12px 28px;
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(115, 119, 173, 0.3);
+        }
+
+        .start-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-xl);
+            color: white;
+        }
+
+        /* باکس اطلاعات */
+        .info-box {
+            background: white;
+            padding: 25px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            border: 2px solid var(--border-color);
+            border-top: 5px solid var(--primary-color);
+            margin-bottom: 30px;
+            transition: var(--transition);
+        }
+
+        .info-box:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .info-box h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .info-list {
+            list-style: none;
+        }
+
+        .info-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-light);
+            transition: var(--transition);
+        }
+
+        .info-list li:hover {
+            color: var(--primary-color);
+            transform: translateX(5px);
+        }
+
+        .info-list li:last-child {
+            border-bottom: none;
+        }
+
+        .info-list i {
+            color: var(--primary-color);
+            width: 20px;
+        }
+
+        /* دکمه شروع دوره */
+        .start-course-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--success-color), #059669);
+            color: white;
+            padding: 18px;
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+        }
+
+        .start-course-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.5);
+        }
+
+        /* پیشرفت دوره */
+        .progress-box {
+            background: linear-gradient(135deg, rgba(115, 119, 173, 0.08), rgba(136, 146, 197, 0.08));
+            border: 2px solid var(--primary-color);
+            padding: 25px;
+            border-radius: var(--radius-lg);
+            margin-bottom: 30px;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .progress-bar-container {
+            height: 14px;
+            background: rgba(115, 119, 173, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid rgba(115, 119, 173, 0.2);
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 10px;
+            transition: width 0.5s ease;
+            box-shadow: 0 0 10px rgba(115, 119, 173, 0.5);
+        }
+
+        /* فوتر */
+        .main-footer {
+            background: linear-gradient(135deg, #2d2d2d, #1e1e1e);
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 80px;
+            border-radius: 12px 12px 0px 0px;
+        }
+
+        .footer-bottom {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 25px 0;
+            margin-top: 40px;
+            text-align: center;
+            border-radius: 12px;
+        }
+
+        .copyright-text {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* دکمه بازگشت به بالا */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-5px);
+        }
+
+        /* ریسپانسیو */
+        @media (max-width: 991px) {
+            .top-info-bar { display: none; }
+            
+            .nav-menu {
+                position: fixed;
+                top: 75px;
+                right: -100%;
+                width: 280px;
+                height: calc(100vh - 75px);
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: var(--shadow-xl);
+                transition: var(--transition);
+                overflow-y: auto;
+            }
+
+            body.dark-mode .nav-menu {
+                background: #1a1a1a;
+            }
+
+            .nav-menu.active { right: 0; }
+            .menu-toggle { display: flex; }
+            .course-header h1 { font-size: 2rem; }
+            .course-stats { justify-content: center; }
+        }
+
+        @media (max-width: 768px) {
+            .logo-text { display: none; }
+            .lesson-item { flex-direction: column; gap: 15px; }
+            .lesson-action { width: 100%; justify-content: space-between; }
+        }
+    </style>
+</head>
+<body>
+    <!-- نوار بالا -->
+    <div class="top-info-bar">
+        <div class="container">
+            <div class="top-info-content">
+                <div class="contact-info">
+                    <span><i class="fas fa-phone-alt"></i> 021-12345678</span>
+                    <span><i class="fas fa-envelope"></i> info@webacademy.ir</span>
+                </div>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- نوار ناوبری -->
+    <nav class="main-navbar">
+        <div class="container">
+            <div class="navbar-content">
+                <a href="../../index.html" class="logo">
+                    <img src="../../image/2274766.png" alt="لوگو">
+                    <span class="logo-text">
+                        <span class="logo-main">وب آکادمی</span>
+                        <span class="logo-sub">مرجع آموزش برنامه‌نویسی</span>
+                    </span>
+                </a>
+
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="../../index.html"><i class="fas fa-home"></i> خانه</a></li>
+                    <li><a href="../../courses_page.html" class="active"><i class="fas fa-graduation-cap"></i> دوره‌ها</a></li>
+                    <li><a href="../../about_page.html"><i class="fas fa-info-circle"></i> درباره ما</a></li>
+                    <li><a href="../../blog_page.html"><i class="fas fa-blog"></i> وبلاگ</a></li>
+                    <li><a href="../../contact_page.html"><i class="fas fa-envelope"></i> تماس</a></li>
+                </ul>
+
+                <div class="nav-actions">
+                    <button class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-sun"></i>
+                    </button>
+                    <button class="menu-toggle" id="menuToggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- هدر دوره -->
+    <header class="course-header">
+        <div class="container">
+            <div class="course-badge">
+                <i class="fas fa-server"></i> دوره جامع سرور
+            </div>
+            <h1><i class="fab fa-php"></i> آموزش جامع PHP</h1>
+            <p>برنامه‌نویسی سمت سرور و ساخت وب‌سایت‌های پویا</p>
+            
+            <div class="course-stats">
+                <div class="stat-item">
+                    <i class="fas fa-users"></i>
+                    <div>
+                        <strong>3,890</strong>
+                        <small style="display: block; opacity: 0.8;">دانشجو</small>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <strong>18 ساعت</strong>
+                        <small style="display: block; opacity: 0.8;">مدت دوره</small>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-video"></i>
+                    <div>
+                        <strong>12 درس</strong>
+                        <small style="display: block; opacity: 0.8;">ویدئو آموزشی</small>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-star"></i>
+                    <div>
+                        <strong>4.87/5</strong>
+                        <small style="display: block; opacity: 0.8;">امتیاز</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- محتوای دوره -->
+    <section class="course-content">
+        <div class="container">
+            <div class="row">
+                <!-- محتوای اصلی -->
+                <div class="col-lg-8">
+                    <!-- درباره دوره -->
+                    <div class="course-card">
+                        <h2 class="card-title">
+                            <i class="fas fa-info-circle"></i>
+                            درباره این دوره
+                        </h2>
+                        <p style="color: var(--text-light); line-height: 1.9; margin-bottom: 20px;">
+                            PHP یک زبان برنامه‌نویسی قدرتمند سمت سرور است که برای ساخت وب‌سایت‌های پویا و تعاملی استفاده می‌شود. در این دوره جامع، شما از مبانی PHP تا موارد پیشرفته مانند OOP، Databases و Security را یاد خواهید گرفت.
+                        </p>
+                        <p style="color: var(--text-light); line-height: 1.9;">
+                            PHP برای میلیون‌ها وب‌سایت استفاده می‌شود و دانش آن برای هر توسعه‌دهنده وب ضروری است. این دوره شما را برای ساخت اپلیکیشن‌های واقعی و حرفه‌ای آماده می‌کند.
+                        </p>
+                    </div>
+
+                    <!-- چه چیزی یاد می‌گیرید -->
+                    <div class="course-card">
+                        <h2 class="card-title">
+                            <i class="fas fa-check-circle"></i>
+                            چه چیزی یاد می‌گیرید؟
+                        </h2>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div style="display: flex; align-items: start; gap: 10px; padding: 15px; background: rgba(115, 119, 173, 0.08); border-radius: 8px; border-right: 3px solid var(--primary-color);">
+                                    <i class="fas fa-check" style="color: var(--success-color); margin-top: 3px;"></i>
+                                    <span style="color: var(--text-light);">توابع و Scope</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div style="display: flex; align-items: start; gap: 10px; padding: 15px; background: rgba(115, 119, 173, 0.08); border-radius: 8px; border-right: 3px solid var(--primary-color);">
+                                    <i class="fas fa-check" style="color: var(--success-color); margin-top: 3px;"></i>
+                                    <span style="color: var(--text-light);">Arrays و Strings</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div style="display: flex; align-items: start; gap: 10px; padding: 15px; background: rgba(115, 119, 173, 0.08); border-radius: 8px; border-right: 3px solid var(--primary-color);">
+                                    <i class="fas fa-check" style="color: var(--success-color); margin-top: 3px;"></i>
+                                    <span style="color: var(--text-light);">کار با فایل‌ها</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div style="display: flex; align-items: start; gap: 10px; padding: 15px; background: rgba(115, 119, 173, 0.08); border-radius: 8px; border-right: 3px solid var(--primary-color);">
+                                    <i class="fas fa-check" style="color: var(--success-color); margin-top: 3px;"></i>
+                                    <span style="color: var(--text-light);">Object-Oriented Programming</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div style="display: flex; align-items: start; gap: 10px; padding: 15px; background: rgba(115, 119, 173, 0.08); border-radius: 8px; border-right: 3px solid var(--primary-color);">
+                                    <i class="fas fa-check" style="color: var(--success-color); margin-top: 3px;"></i>
+                                    <span style="color: var(--text-light);">تعامل با Databases</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- سرفصل دوره -->
+                    <div class="course-card">
+                        <h2 class="card-title">
+                            <i class="fas fa-list"></i>
+                            سرفصل دوره
+                        </h2>
+                        
+                        <ul class="lessons-list">
+                            <!-- درس 1 -->
+                            <li class="lesson-item">
+                                <div class="lesson-info">
+                                    <div class="lesson-number">1</div>
+                                    <div class="lesson-details">
+                                        <h4>مقدمه و نصب محیط PHP</h4>
+                                        <div class="lesson-meta">
+                                            <span><i class="far fa-clock"></i> 30 دقیقه</span>
+                                            <span><i class="fas fa-signal"></i> مقدماتی</span>
+                                            <span><i class="fas fa-video"></i> ویدئو</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="lesson-action">
+                                    <a href="./lesson-01.html" class="start-btn">
+                                        شروع درس <i class="fas fa-play"></i>
+                                    </a>
+                                </div>
+                            </li>
+
+                            <!-- درس 2 -->
+                            <li class="lesson-item">
+                                <div class="lesson-info">
+                                    <div class="lesson-number">2</div>
+                                    <div class="lesson-details">
+                                        <h4>متغیرها و انواع داده</h4>
+                                        <div class="lesson-meta">
+                                            <span><i class="far fa-clock"></i> 40 دقیقه</span>
+                                            <span><i class="fas fa-signal"></i> مقدماتی</span>
+                                            <span><i class="fas fa-video"></i> ویدئو</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="lesson-action">
+                                    <a href="./lesson-02.html" class="start-btn">
+                                        شروع درس <i class="fas fa-play"></i>
+                                    </a>
+                                </div>
+                            </li>
+
+                            <!-- درس 3 -->
+                            <li class="lesson-item">
+                                <div class="lesson-info">
+                                    <div class="lesson-number">3</div>
+                                    <div class="lesson-details">
+                                        <h4>عملگرها و شرط‌ها</h4>
+                                        <div class="lesson-meta">
+                                            <span><i class="far fa-clock"></i> 38 دقیقه</span>
+                                            <span><i class="fas fa-signal"></i> مقدماتی</span>
+                                            <span><i class="fas fa-video"></i> ویدئو</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="lesson-action">
+                                    <a href="./lesson-03.html" class="start-btn">
+                                        شروع درس <i class="fas fa-play"></i>
+                                    </a>
+                                </div>
+                            </li>
+
+                            <!-- درس 4 -->
+                            <li class="lesson-item">
+                                <div class="lesson-info">
+                                    <div class="lesson-number">4</div>
+                                    <div class="lesson-details">
+                                        <h4>حلقه‌ها - For و While</h4>
+                                        <div class="lesson-meta">
+                                            <span><i class="far fa-clock"></i> 42 دقیقه</span>
+                                            <span><i class="fas fa-signal"></i> متوسط</span>
+                                            <span><i class="fas fa-video"></i> ویدئو</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="lesson-action">
+                                    <a href="./lesson-04.html" class="start-btn">
+                                        شروع درس <i class="fas fa-play"></i>
+                                    </a>
+                                </div>
+                            </li>
+
+                            <!-- درس 5 -->
+                            <li class="lesson-item">
+                                <div class="lesson-info">
+                                    <div class="lesson-number">5</div>
+                                    <div class="lesson-details">
+                                        <h4>توابع و پارامترها</h4>
+                                        <div class="lesson-meta">
+                                            <span><i class="far fa-clock"></i> 50 دقیقه</span>
+                                            <span><i class="fas fa-signal"></i> متوسط</span>
+                                            <span><i class="fas fa-video"></i> ویدئو</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="lesson-action">
+                                    <a href="./lesson-05.html" class="start-btn">
+                                        شروع درس <i class="fas fa-play"></i>
+                                    </a>
+                                </div>
+                            </li>
+
+                            <!-- درس 6 -->
+                            <li class="lesson-item">
+                                <div class="lesson-info">
+                                    <div class="lesson-number">6</div>
+                                    <div class="lesson-details">
+                                        <h4>Arrays و عملیات آن</h4>
+                                        <div class="lesson-meta">
+                                            <span><i class="far fa-clock"></i> 45 دقیقه</span>
+                                            <span><i class="fas fa-signal"></i> متوسط</span>
+                                            <span><i class="fas fa-video"></i> ویدئو</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="lesson-action">
+                                    <a href="./lesson-06.html" class="start-btn">
+                                        شروع درس <i class="fas fa-play"></i>
+                                    </a>
+                                </div>
+                            </li>
+
+                            <!-- تمرین 1 -->
+                            <li class="lesson-item" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.05)); border-right: 5px solid #10b981;">
+                                <div class="lesson-info">
+                                    <div class="lesson-number" style="background: linear-gradient(135deg, #10b981, #059669);">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </div>
+                                    <div class="lesson-details">
+                                        <h4>تمرین: سیستم ثبت‌نام</h4>
+                                        <div class="lesson-meta">
+                                            <span><i class="far fa-clock"></i> 75 دقیقه</span>
+                                            <span><i class="fas fa-tasks"></i> تمرین عملی</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="lesson-action">
+                                    <a href="./train.html" class="start-btn" style="background: linear-gradient(135deg, #10b981, #059669);">
+                                        شروع تمرین <i class="fas fa-arrow-left"></i>
+                                    </a>
+                                </div>
+                            </li>
+
+                            <!-- آزمون میان‌دوره -->
+                            <li class="lesson-item" style="background: linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(219, 39, 119, 0.05)); border-right: 5px solid #ec4899;">
+                                <div class="lesson-info">
+                                    <div class="lesson-number" style="background: linear-gradient(135deg, #ec4899, #db2777);">
+                                        <i class="fas fa-clipboard-check"></i>
+                                    </div>
+                                    <div class="lesson-details">
+                                        <h4>آزمون میان‌دوره</h4>
+                                        <div class="lesson-meta">
+                                            <span><i class="far fa-clock"></i> 30 دقیقه</span>
+                                            <span><i class="fas fa-question-circle"></i> 12 سوال</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="lesson-action">
+                                    <a href="./mid-quiz.html" class="start-btn" style="background: linear-gradient(135deg, #ec4899, #db2777);">
+                                        شروع آزمون <i class="fas fa-arrow-left"></i>
+                                    </a>
+                                </div>
+                            </li>
+
+                            <!-- درس 7 -->
+                            <li class="lesson-item">
+                                <div class="lesson-info">
+                                    <div class="lesson-number">7</div>
+                                    <div class="lesson-details">
+                                        <h4>کار با فایل‌ها در PHP</h4>
+                                        <div class="lesson-meta">
+                                            <span><i class="far fa-clock"></i> 50 دقیقه</span>
+                                            <span><i class="fas fa-signal"></i> متوسط</span>
+                                            <span><i class="fas fa-video"></i> ویدئو</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="lesson-action">
+                                    <a href="./lesson-07.html" class="start-btn">
+                                        شروع درس <i class="fas fa-play"></i>
+                                    </a>
+                                </div>
+                            </li>
+
+                            <!-- درس 8 -->
+                            <li class="lesson-item">
+                                <div class="lesson-info">
+                                    <div class="lesson-number">8</div>
+                                    <div class="lesson-details">
+                                        <h4>Object-Oriented Programming</h4>
+                                        <div class="lesson-meta">
+                                            <span><i class="far fa-clock"></i> 60 دقیقه</span>
+                                            <span><i class="fas fa-signal"></i> پیشرفته</span>
+                                            <span><i class="fas fa-video"></i> ویدئو</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="lesson-action">
+                                    <a href="./lesson-08.html" class="start-btn">
+                                        شروع درس <i class="fas fa-play"></i>
+                                    </a>
+                                </div>
+                            </li>
+
+                            <!-- درس 9 -->
+                            <li class="lesson-item">
+                                <div class="lesson-info">
+                                    <div class="lesson-number">9</div>
+                                    <div class="lesson-details">
+                                        <h4>GET و POST و Forms</h4>
+                                        <div class="lesson-meta">
+                                            <span><i class="far fa-clock"></i> 45 دقیقه</span>
+                                            <span><i class="fas fa-signal"></i> پیشرفته</span>
+                                            <span><i class="fas fa-video"></i> ویدئو</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="lesson-action">
+                                    <a href="./lesson-09.html" class="start-btn">
+                                        شروع درس <i class="fas fa-play"></i>
+                                    </a>
+                                </div>
+                            </li>
+
+                            <!-- درس 10 -->
+                            <li class="lesson-item">
+                                <div class="lesson-info">
+                                    <div class="lesson-number">10</div>
+                                    <div class="lesson-details">
+                                        <h4>Sessions و Cookies</h4>
+                                        <div class="lesson-meta">
+                                            <span><i class="far fa-clock"></i> 50 دقیقه</span>
+                                            <span><i class="fas fa-signal"></i> پیشرفته</span>
+                                            <span><i class="fas fa-video"></i> ویدئو</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="lesson-action">
+                                    <a href="./lesson-10.html" class="start-btn">
+                                        شروع درس <i class="fas fa-play"></i>
+                                    </a>
+                                </div>
+                            </li>
+
+                            <!-- درس 11 -->
+                            <li class="lesson-item">
+                                <div class="lesson-info">
+                                    <div class="lesson-number">11</div>
+                                    <div class="lesson-details">
+                                        <h4>درقفل‌گذاری و امنیت</h4>
+                                        <div class="lesson-meta">
+                                            <span><i class="far fa-clock"></i> 55 دقیقه</span>
+                                            <span><i class="fas fa-signal"></i> پیشرفته</span>
+                                            <span><i class="fas fa-video"></i> ویدئو</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="lesson-action">
+                                    <a href="./lesson-11.html" class="start-btn">
+                                        شروع درس <i class="fas fa-play"></i>
+                                    </a>
+                                </div>
+                            </li>
+
+                            <!-- درس 12 -->
+                            <li class="lesson-item">
+                                <div class="lesson-info">
+                                    <div class="lesson-number">12</div>
+                                    <div class="lesson-details">
+                                        <h4>پروژه نهایی: سایت بلاگ</h4>
+                                        <div class="lesson-meta">
+                                            <span><i class="far fa-clock"></i> 120 دقیقه</span>
+                                            <span><i class="fas fa-signal"></i> پیشرفته</span>
+                                            <span><i class="fas fa-project-diagram"></i> پروژه</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="lesson-action">
+                                    <a href="./lesson-12.html" class="start-btn">
+                                        شروع درس <i class="fas fa-play"></i>
+                                    </a>
+                                </div>
+                            </li>
+
+                            <!-- آزمون پایانی -->
+                            <li class="lesson-item" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 38, 0.05)); border-right: 5px solid #ef4444;">
+                                <div class="lesson-info">
+                                    <div class="lesson-number" style="background: linear-gradient(135deg, #ef4444, #dc2626);">
+                                        <i class="fas fa-trophy"></i>
+                                    </div>
+                                    <div class="lesson-details">
+                                        <h4>آزمون پایان دوره</h4>
+                                        <div class="lesson-meta">
+                                            <span><i class="far fa-clock"></i> 45 دقیقه</span>
+                                            <span><i class="fas fa-question-circle"></i> 20 سوال</span>
+                                            <span><i class="fas fa-certificate"></i> دریافت گواهی</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="lesson-action">
+                                    <a href="./final-quiz.html" class="start-btn" style="background: linear-gradient(135deg, #ef4444, #dc2626);">
+                                        شروع آزمون <i class="fas fa-arrow-left"></i>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- سایدبار -->
+                <div class="col-lg-4">
+                    <!-- پیشرفت دوره -->
+                    <div class="progress-box">
+                        <div class="progress-header">
+                            <h4 style="margin: 0; color: var(--text-dark); font-weight: 700;">پیشرفت شما</h4>
+                            <strong style="color: var(--primary-color); font-size: 1.3rem;">0%</strong>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-fill" style="width: 0%" id="progressBar"></div>
+                        </div>
+                        <p style="margin-top: 15px; color: var(--text-light); font-size: 0.9rem;">
+                            <i class="fas fa-info-circle"></i> 0 از 14 درس تکمیل شده
+                        </p>
+                    </div>
+
+                    <!-- دکمه شروع -->
+                    <button class="start-course-btn" onclick="window.location.href='./lesson-01.html'">
+                        <i class="fas fa-play-circle"></i>
+                        شروع دوره رایگان
+                    </button>
+
+                    <!-- اطلاعات دوره -->
+                    <div class="info-box">
+                        <h3><i class="fas fa-info-circle"></i> اطلاعات دوره</h3>
+                        <ul class="info-list">
+                            <li>
+                                <i class="fas fa-signal"></i>
+                                <span><strong>سطح:</strong> مقدماتی تا پیشرفته</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-clock"></i>
+                                <span><strong>مدت:</strong> 18 ساعت</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-video"></i>
+                                <span><strong>تعداد درس:</strong> 12 درس ویدئویی</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-tasks"></i>
+                                <span><strong>تمرین:</strong> 1 تمرین عملی</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-clipboard-check"></i>
+                                <span><strong>آزمون:</strong> 2 آزمون (میان‌دوره و پایانی)</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-project-diagram"></i>
+                                <span><strong>پروژه:</strong> 1 پروژه نهایی</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-certificate"></i>
+                                <span><strong>گواهینامه:</strong> معتبر بین‌المللی</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-infinity"></i>
+                                <span><strong>دسترسی:</strong> مادام‌العمر</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-mobile-alt"></i>
+                                <span><strong>پلتفرم:</strong> موبایل، تبلت و دسکتاپ</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-download"></i>
+                                <span><strong>دانلود:</strong> فایل‌های تمرینی و کدها</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-user-tie"></i>
+                                <span><strong>مدرس:</strong> حسن رضایی</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-language"></i>
+                                <span><strong>زبان:</strong> فارسی با زیرنویس</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- پیش‌نیازها -->
+                    <div class="info-box">
+                        <h3><i class="fas fa-check-circle"></i> پیش‌نیازها</h3>
+                        <ul class="info-list">
+                            <li>
+                                <i class="fas fa-check" style="color: var(--success-color);"></i>
+                                <span>آشنایی با HTML و CSS</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check" style="color: var(--success-color);"></i>
+                                <span>دانش اولیه JavaScript مفید است</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check" style="color: var(--success-color);"></i>
+                                <span>کامپیوتر یا لپ‌تاپ</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check" style="color: var(--success-color);"></i>
+                                <span>اتصال به اینترنت</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- ابزارهای مورد نیاز -->
+                    <div class="info-box">
+                        <h3><i class="fas fa-tools"></i> ابزارهای مورد نیاز</h3>
+                        <ul class="info-list">
+                            <li>
+                                <i class="fas fa-code"></i>
+                                <span>VS Code یا PHP Storm</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-server"></i>
+                                <span>Apache Server (XAMPP یا Laragon)</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-database"></i>
+                                <span>MySQL برای Databases</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-file-code"></i>
+                                <span>فایل‌های تمرینی دوره</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- فوتر -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p class="copyright-text">
+                    © 1404 وب آکادمی. تمامی حقوق محفوظ است.
+                    <br>
+                    <small style="opacity: 0.7;">ساخته شده با <i class="fas fa-heart" style="color: #7377ad;"></i> و PHP</small>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- دکمه بازگشت به بالا -->
+    <button class="scroll-to-top" id="scrollToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // تم تاریک/روشن
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const themeIcon = themeToggle.querySelector('i');
+
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // منوی موبایل
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                menuToggle.classList.remove('active');
+            });
+        });
+
+        // بازگشت به بالا
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 500) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ذخیره پیشرفت
+        function updateProgress() {
+            const completed = localStorage.getItem('php_course_progress') || 0;
+            const total = 14;
+            const percentage = (completed / total) * 100;
+            document.getElementById('progressBar').style.width = percentage + '%';
+            
+            const progressText = document.querySelector('.progress-box p');
+            progressText.innerHTML = `<i class="fas fa-info-circle"></i> ${completed} از ${total} درس تکمیل شده`;
+            
+            const percentageText = document.querySelector('.progress-header strong');
+            percentageText.textContent = Math.round(percentage) + '%';
+        }
+
+        updateProgress();
+
+        // انیمیشن آمار
+        const stats = document.querySelectorAll('.stat-item strong');
+        stats.forEach(stat => {
+            stat.addEventListener('mouseenter', () => {
+                stat.style.transform = 'scale(1.2)';
+                stat.style.transition = 'transform 0.3s ease';
+            });
+            stat.addEventListener('mouseleave', () => {
+                stat.style.transform = 'scale(1)';
+            });
+        });
+
+        // افکت هاور روی دروس
+        const lessonItems = document.querySelectorAll('.lesson-item');
+        lessonItems.forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateX(10px)';
+            });
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateX(0)';
+            });
+        });
+
+        // کلیک روی آیتم‌های info-list
+        const infoItems = document.querySelectorAll('.info-list li');
+        infoItems.forEach(item => {
+            item.addEventListener('click', function() {
+                this.style.background = 'rgba(115, 119, 173, 0.08)';
+                seTimeout(() => {
+                    this.style.background = 'transparent';t
+                }, 300);
+            });
+        });
+    </script>
+</body>
+</html>

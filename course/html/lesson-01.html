@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>درس 1: مقدمه و آشنایی با HTML - وب آکادمی</title>
+    <link rel="shortcut icon" href="../../image/2274766.png" type="image/x-icon">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- فونت Vazirmatn -->
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Prism.js for Syntax Highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #e34c26;
+            --secondary-color: #f06529;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --text-dark: #0f172a;
+            --text-light: #64748b;
+            --border-color: #e2e8f0;
+            --light-color: #f8fafc;
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background: linear-gradient(135deg, #fcfaf8 0%, #f0f4f8 100%);
+            color: var(--text-dark);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* تم تاریک */
+        body.dark-mode {
+            --light-color: #1a1a1a;
+            --text-dark: #f1f5f9;
+            --text-light: #cbd5e1;
+            --border-color: #3a3a3a;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+        }
+
+        body.dark-mode .top-bar {
+            background: linear-gradient(90deg, #2d2d2d, #1a1a1a);
+        }
+
+        body.dark-mode .lesson-header,
+        body.dark-mode .lesson-content,
+        body.dark-mode .code-result,
+        body.dark-mode .lesson-nav {
+            background: rgba(30, 30, 30, 0.95);
+            border-color: #3a3a3a;
+        }
+
+        /* نوار بالا */
+        .top-bar {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-md);
+        }
+
+        .top-bar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .course-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .top-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .theme-toggle-btn,
+        .back-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .theme-toggle-btn:hover,
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            color: white;
+        }
+
+        /* محتوای درس */
+        .lesson-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px 40px;
+        }
+
+        .lesson-header {
+            background: white;
+            padding: 40px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+        }
+
+        .lesson-number {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .lesson-header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .lesson-meta {
+            display: flex;
+            gap: 25px;
+            color: var(--text-light);
+            font-size: 0.95rem;
+            flex-wrap: wrap;
+        }
+
+        .lesson-meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .lesson-content {
+            background: white;
+            padding: 40px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+        }
+
+        .lesson-content h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 40px 0 20px 0;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .lesson-content h2:first-child {
+            margin-top: 0;
+        }
+
+        .lesson-content h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 30px 0 15px 0;
+            color: var(--primary-color);
+        }
+
+        .lesson-content p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+            line-height: 1.9;
+        }
+
+        .lesson-content ul, .lesson-content ol {
+            margin: 20px 0 20px 30px;
+            color: var(--text-light);
+        }
+
+        .lesson-content li {
+            margin-bottom: 12px;
+            line-height: 1.9;
+        }
+
+        .lesson-content strong {
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        .lesson-content code {
+            background: rgba(227, 76, 38, 0.1);
+            color: var(--primary-color);
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        /* نوت باکس */
+        .note-box {
+            background: linear-gradient(135deg, rgba(227, 76, 38, 0.1), rgba(240, 101, 41, 0.05));
+            border-right: 4px solid var(--primary-color);
+            padding: 20px 25px;
+            border-radius: var(--radius-md);
+            margin: 25px 0;
+        }
+
+        .note-box.success {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.05));
+            border-right-color: var(--success-color);
+        }
+
+        .note-box.warning {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(217, 119, 6, 0.05));
+            border-right-color: var(--warning-color);
+        }
+
+        .note-box-title {
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dark);
+            font-size: 1.05rem;
+        }
+
+        .note-box p {
+            margin-bottom: 10px;
+        }
+
+        .note-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .note-box ul {
+            margin: 10px 0 0 20px;
+        }
+
+        /* بلاک کد */
+        .code-block {
+            background: #1e293b;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            margin: 25px 0;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .code-header {
+            background: #0f172a;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #334155;
+        }
+
+        .code-lang {
+            color: #94a3b8;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .copy-btn {
+            background: rgba(227, 76, 38, 0.2);
+            color: var(--primary-color);
+            border: none;
+            padding: 6px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .copy-btn:hover {
+            background: rgba(227, 76, 38, 0.3);
+            transform: scale(1.05);
+        }
+
+        .copy-btn.copied {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--success-color);
+        }
+
+        pre[class*="language-"] {
+            margin: 0;
+            padding: 20px;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        code[class*="language-"] {
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        /* نتیجه کد */
+        .code-result {
+            background: white;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .result-label {
+            background: linear-gradient(135deg, var(--success-color), #059669);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 15px;
+        }
+
+        .code-result h1 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .code-result p {
+            margin-bottom: 10px;
+            color: var(--text-light);
+        }
+
+        .code-result a {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+
+        /* ناوبری درس */
+        .lesson-nav {
+            background: white;
+            padding: 25px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            border: 1px solid var(--border-color);
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            flex: 1;
+            min-width: 200px;
+            padding: 15px 25px;
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-weight: 700;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-align: center;
+        }
+
+        .nav-btn-prev {
+            background: linear-gradient(135deg, #94a3b8, #64748b);
+            color: white;
+        }
+
+        .nav-btn-next {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+            color: white;
+        }
+
+        .nav-btn-back {
+            flex: 0 1 auto;
+            background: var(--light-color);
+            color: var(--text-dark);
+            border: 2px solid var(--border-color);
+        }
+
+        .nav-btn-back:hover {
+            background: var(--border-color);
+            color: var(--text-dark);
+        }
+
+        /* فوتر */
+        .main-footer {
+            background: linear-gradient(135deg, #2d2d2d, #1e1e1e);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .copyright-text {
+            margin: 0;
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+
+        /* دکمه بازگشت به بالا */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-5px);
+        }
+
+        /* ریسپانسیو */
+        @media (max-width: 768px) {
+            .lesson-header, .lesson-content {
+                padding: 25px 20px;
+            }
+
+            .lesson-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .lesson-content h2 {
+                font-size: 1.5rem;
+            }
+
+            .lesson-content h3 {
+                font-size: 1.2rem;
+            }
+
+            .lesson-meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .lesson-nav {
+                flex-direction: column;
+            }
+
+            .nav-btn {
+                width: 100%;
+            }
+
+            .course-title span {
+                display: none;
+            }
+
+            .top-actions {
+                gap: 10px;
+            }
+
+            .theme-toggle-btn span,
+            .back-btn span {
+                display: none;
+            }
+
+            .code-header {
+                flex-direction: column;
+                gap: 10px;
+                align-items: flex-start;
+            }
+
+            .copy-btn {
+                width: 100%;
+            }
+
+            pre[class*="language-"] {
+                font-size: 0.85rem;
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .lesson-container {
+                padding: 0 15px 30px;
+            }
+
+            .lesson-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .scroll-to-top {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+                bottom: 20px;
+                left: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- نوار بالا -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-content">
+                <div class="course-title">
+                    <i class="fab fa-html5"></i>
+                    <span>دوره آموزش HTML5</span>
+                </div>
+                <div class="top-actions">
+                    <button class="theme-toggle-btn" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                        <span>تم تاریک</span>
+                    </button>
+                    <a href="./index.html" class="back-btn">
+                        <i class="fas fa-arrow-right"></i>
+                        <span>بازگشت</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- محتوای درس -->
+    <div class="lesson-container">
+        <!-- هدر درس -->
+        <div class="lesson-header">
+            <div class="lesson-number">درس 1</div>
+            <h1>مقدمه و آشنایی با HTML</h1>
+            <div class="lesson-meta">
+                <span><i class="far fa-clock"></i> 25 دقیقه</span>
+                <span><i class="fas fa-signal"></i> مقدماتی</span>
+                <span><i class="fas fa-video"></i> ویدئو + متن</span>
+            </div>
+        </div>
+
+        <!-- محتوا -->
+        <div class="lesson-content">
+            <h2><i class="fas fa-book-open"></i> HTML چیست؟</h2>
+            
+            <p>
+                <strong>HTML</strong> مخفف <strong>HyperText Markup Language</strong> است. HTML زبان استاندارد برای ساخت صفحات وب است. در واقع HTML یک زبان برنامه‌نویسی نیست، بلکه یک <strong>زبان نشانه‌گذاری (Markup Language)</strong> است که برای ساختاردهی محتوای صفحات وب استفاده می‌شود.
+            </p>
+
+            <p>
+                به زبان ساده، HTML مثل اسکلت بدن است. همان‌طور که اسکلت شکل و ساختار بدن را مشخص می‌کند، HTML هم ساختار و محتوای صفحات وب را تعیین می‌کند. بعداً با CSS زیباسازی می‌کنیم و با JavaScript قابلیت‌های تعاملی اضافه می‌کنیم.
+            </p>
+
+            <div class="note-box">
+                <div class="note-box-title">
+                    <i class="fas fa-lightbulb"></i>
+                    نکته مهم
+                </div>
+                <p style="margin: 0;">
+                    HTML تنها زبان نشانه‌گذاری است، نه زبان برنامه‌نویسی! یعنی شما با HTML نمی‌توانید محاسبات انجام دهید یا شرط و حلقه بنویسید. HTML فقط ساختار صفحه را می‌سازد.
+                </p>
+            </div>
+
+            <h3>چرا یادگیری HTML مهم است؟</h3>
+            
+            <ul>
+                <li><strong>پایه و اساس وب:</strong> تمام صفحات وب با HTML ساخته شده‌اند. حتی پیچیده‌ترین وب‌سایت‌ها هم از HTML شروع می‌شوند.</li>
+                <li><strong>آسان برای یادگیری:</strong> HTML ساده‌ترین زبان برای شروع کار در دنیای وب است. می‌توانید در چند ساعت اصول اولیه آن را یاد بگیرید.</li>
+                <li><strong>پایه‌ای برای سایر تکنولوژی‌ها:</strong> قبل از یادگیری CSS، JavaScript و فریم‌ورک‌های وب، باید HTML را بلد باشید.</li>
+                <li><strong>کاربرد گسترده:</strong> HTML در وب‌سایت‌ها، اپلیکیشن‌های موبایل، ایمیل‌های HTML و حتی اپلیکیشن‌های دسکتاپ استفاده می‌شود.</li>
+                <li><strong>فرصت‌های شغلی:</strong> یادگیری HTML اولین قدم برای ورود به دنیای توسعه وب و فرانت‌اند است که بازار کار بسیار خوبی دارد.</li>
+            </ul>
+
+            <h2><i class="fas fa-code"></i> ساختار یک تگ HTML</h2>
+
+            <p>
+                HTML از <strong>تگ‌ها (Tags)</strong> تشکیل شده است. تگ‌ها به مرورگر می‌گویند که محتوا را چگونه نمایش دهد. یک تگ معمولاً از سه بخش تشکیل شده است:
+            </p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-lang"><i class="fab fa-html5"></i> HTML</span>
+                    <button class="copy-btn" onclick="copyCode(this)">
+                        <i class="fas fa-copy"></i> کپی کد
+                    </button>
+                </div>
+                <pre><code class="language-html">&lt;tagname&gt;محتوا اینجا قرار می‌گیرد&lt;/tagname&gt;</code></pre>
+            </div>
+
+            <div class="note-box success">
+                <div class="note-box-title">
+                    <i class="fas fa-check-circle"></i>
+                    اجزای یک تگ HTML
+                </div>
+                <ul style="margin: 10px 0 0 20px;">
+                    <li><strong>تگ باز (Opening Tag):</strong> <code>&lt;tagname&gt;</code> - شروع تگ</li>
+                    <li><strong>محتوا (Content):</strong> متن یا عناصر دیگری که نمایش داده می‌شود</li>
+                    <li><strong>تگ بسته (Closing Tag):</strong> <code>&lt;/tagname&gt;</code> - پایان تگ (توجه کنید که اسلش <code>/</code> دارد)</li>
+                </ul>
+            </div>
+
+            <h3>مثال‌های واقعی:</h3>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-lang"><i class="fab fa-html5"></i> مثال: تگ‌های پایه</span>
+                    <button class="copy-btn" onclick="copyCode(this)">
+                        <i class="fas fa-copy"></i> کپی کد
+                    </button>
+                </div>
+                <pre><code class="language-html">&lt;h1&gt;عنوان صفحه من&lt;/h1&gt;
+&lt;p&gt;این یک پاراگراف است. متن شما اینجا قرار می‌گیرد.&lt;/p&gt;
+&lt;a href="https://google.com"&gt;لینک به گوگل&lt;/a&gt;</code></pre>
+            </div>
+
+            <div class="code-result">
+                <div class="result-label"><i class="fas fa-eye"></i> نتیجه:</div>
+                <h1 style="font-size: 2rem; margin-bottom: 15px; font-weight: 800;">عنوان صفحه من</h1>
+                <p style="margin-bottom: 15px; line-height: 1.8;">این یک پاراگراف است. متن شما اینجا قرار می‌گیرد.</p>
+                <a href="https://google.com" target="_blank" style="color: #e34c26; text-decoration: underline; font-weight: 600;">لینک به گوگل</a>
+            </div>
+
+            <p>
+                همان‌طور که می‌بینید، مرورگر تگ‌های HTML را تفسیر کرده و محتوا را به شکل مناسب نمایش می‌دهد. <code>&lt;h1&gt;</code> برای عنوان بزرگ، <code>&lt;p&gt;</code> برای پاراگراف و <code>&lt;a&gt;</code> برای لینک استفاده می‌شود.
+            </p>
+
+            <h2><i class="fas fa-star"></i> تگ‌های خودبسته (Self-Closing Tags)</h2>
+
+            <p>
+                بعضی تگ‌ها محتوایی ندارند و نیاز به تگ بسته ندارند. به این تگ‌ها <strong>تگ‌های خودبسته</strong> یا <strong>Self-Closing Tags</strong> می‌گوییم. این تگ‌ها معمولاً برای قرار دادن چیزی (مثل تصویر) یا ایجاد شکست در صفحه (مثل خط جدید) استفاده می‌شوند.
+            </p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-lang"><i class="fab fa-html5"></i> تگ‌های خودبسته</span>
+                    <button class="copy-btn" onclick="copyCode(this)">
+                        <i class="fas fa-copy"></i> کپی کد
+                    </button>
+                </div>
+                <pre><code class="language-html">&lt;br&gt;  &lt;!-- ایجاد خط جدید --&gt;
+&lt;hr&gt;  &lt;!-- ایجاد خط افقی --&gt;
+&lt;img src="image.jpg" alt="توضیح تصویر"&gt;  &lt;!-- نمایش تصویر --&gt;
+&lt;input type="text" placeholder="نام خود را وارد کنید"&gt;  &lt;!-- فیلد ورودی --&gt;</code></pre>
+            </div>
+
+            <div class="note-box warning">
+                <div class="note-box-title">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    نکته درباره HTML5
+                </div>
+                <p style="margin: 0;">
+                    در HTML5 می‌توانید تگ‌های خودبسته را به دو شکل بنویسید: <code>&lt;br&gt;</code> یا <code>&lt;br /&gt;</code>. هر دو درست هستند، اما شکل اول (بدون اسلش) رایج‌تر است. اگر با XHTML کار می‌کنید، باید حتماً از اسلش استفاده کنید.
+                </p>
+            </div>
+
+            <h2><i class="fas fa-tools"></i> ابزارهای مورد نیاز برای نوشتن HTML</h2>
+
+            <p>
+                خبر خوب اینکه برای شروع کار با HTML به ابزارهای پیچیده و گران‌قیمتی نیاز ندارید! فقط دو چیز ساده لازم است:
+            </p>
+
+            <h3>1. یک ادیتور متن (Text Editor)</h3>
+            <p>
+                برای نوشتن کد HTML می‌توانید از هر ادیتور متنی استفاده کنید. چند گزینه محبوب:
+            </p>
+            <ul>
+                <li><strong>Visual Studio Code (VS Code)</strong> - محبوب‌ترین و پیشنهاد ویژه ما! رایگان، قدرتمند و پر از افزونه‌های مفید</li>
+                <li><strong>Sublime Text</strong> - سریع و سبک، رابط کاربری زیبا دارد</li>
+                <li><strong>Notepad++</strong> - ساده و کاربردی، مناسب برای شروع</li>
+                <li><strong>Atom</strong> - منبع‌باز و قابل شخصی‌سازی</li>
+                <li><strong>حتی Notepad</strong> - دفترچه یادداشت ویندوز هم کار می‌کند! (البته توصیه نمی‌شود)</li>
+            </ul>
+
+            <h3>2. یک مرورگر وب (Web Browser)</h3>
+            <p>
+                برای دیدن نتیجه کارتان نیاز به یک مرورگر دارید:
+            </p>
+            <ul>
+                <li><strong>Google Chrome</strong> - پیشنهاد ویژه برای توسعه‌دهندگان، ابزارهای Developer Tools عالی دارد</li>
+                <li><strong>Mozilla Firefox</strong> - بسیار خوب برای توسعه وب، ابزارهای مناسبی دارد</li>
+                <li><strong>Microsoft Edge</strong> - مرورگر جدید مایکروسافت، سریع و مدرن</li>
+                <li><strong>Safari</strong> - برای کاربران macOS و iOS</li>
+            </ul>
+
+            <div class="note-box success">
+                <div class="note-box-title">
+                    <i class="fas fa-graduation-cap"></i>
+                    نکته برای شروع
+                </div>
+                <p style="margin: 0;">
+                    اگر الان هیچ ادیتور کدی ندارید، نگران نباشید! می‌توانید با <strong>Notepad</strong> ویندوز یا <strong>TextEdit</strong> مک شروع کنید. فقط مطمئن شوید که فایل را با پسوند <code>.html</code> ذخیره می‌کنید.
+                </p>
+            </div>
+
+            <h2><i class="fas fa-rocket"></i> نوشتن اولین صفحه HTML</h2>
+
+            <p>
+                حالا وقت آن رسیده که اولین صفحه HTML خودتان را بسازید! این کار خیلی ساده است. مراحل زیر را دنبال کنید:
+            </p>
+
+            <div class="note-box success">
+                <div class="note-box-title">
+                    <i class="fas fa-clipboard-list"></i>
+                    مراحل ساخت اولین صفحه
+                </div>
+                <p><strong>گام 1:</strong> یک پوشه جدید روی دسکتاپ بسازید و نامش را بگذارید <code>my-first-website</code></p>
+                <p><strong>گام 2:</strong> یک فایل جدید بسازید و نامش را بگذارید <code>index.html</code></p>
+                <p><strong>گام 3:</strong> فایل را با ادیتور متنی باز کنید و کد زیر را در آن بنویسید</p>
+                <p style="margin: 0;"><strong>گام 4:</strong> فایل را ذخیره کنید و با مرورگر باز کنید (دوبار کلیک روی فایل)</p>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-lang"><i class="fab fa-html5"></i> اولین کد HTML شما</span>
+                    <button class="copy-btn" onclick="copyCode(this)">
+                        <i class="fas fa-copy"></i> کپی کد
+                    </button>
+                </div>
+                <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="fa"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;اولین صفحه من&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;سلام دنیا!&lt;/h1&gt;
+    &lt;p&gt;این اولین صفحه HTML من است.&lt;/p&gt;
+    &lt;p&gt;من الان دارم HTML یاد می‌گیرم و خیلی هیجان‌زده‌ام!&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </div>
+
+            <div class="code-result">
+                <div class="result-label"><i class="fas fa-eye"></i> نتیجه در مرورگر:</div>
+                <div style="padding: 20px; border: 2px dashed #e2e8f0; border-radius: 8px; background: #fafafa;">
+                    <h1 style="font-size: 2rem; margin-bottom: 15px; font-weight: 800;">سلام دنیا!</h1>
+                    <p style="margin-bottom: 10px; line-height: 1.8;">این اولین صفحه HTML من است.</p>
+                    <p style="margin-bottom: 0; line-height: 1.8;">من الان دارم HTML یاد می‌گیرم و خیلی هیجان‌زده‌ام!</p>
+                </div>
+            </div>
+
+            <h3>توضیح کد:</h3>
+            <ul>
+                <li><code>&lt;!DOCTYPE html&gt;</code> - به مرورگر می‌گوید این یک سند HTML5 است</li>
+                <li><code>&lt;html lang="fa"&gt;</code> - ریشه اصلی سند، <code>lang="fa"</code> زبان صفحه را فارسی تعیین می‌کند</li>
+                <li><code>&lt;head&gt;</code> - بخشی که اطلاعات درباره صفحه را دارد (به کاربر نشان داده نمی‌شود)</li>
+                <li><code>&lt;meta charset="UTF-8"&gt;</code> - کدگذاری کاراکترها را مشخص می‌کند (برای نمایش درست فارسی)</li>
+                <li><code>&lt;title&gt;</code> - عنوانی که در تب مرورگر نمایش داده می‌شود</li>
+                <li><code>&lt;body&gt;</code> - محتوای اصلی صفحه که به کاربر نمایش داده می‌شود</li>
+                <li><code>&lt;h1&gt;</code> - بزرگ‌ترین عنوان در صفحه</li>
+                <li><code>&lt;p&gt;</code> - پاراگراف متن</li>
+            </ul>
+
+            <div class="note-box">
+                <div class="note-box-title">
+                    <i class="fas fa-info-circle"></i>
+                    نکته مهم درباره DOCTYPE
+                </div>
+                <p style="margin: 0;">
+                    <code>&lt;!DOCTYPE html&gt;</code> باید همیشه اولین خط هر فایل HTML باشد. این خط به مرورگر می‌گوید که از چه نسخه‌ای از HTML استفاده می‌کنیم. در HTML5 این تگ بسیار ساده شده است (در نسخه‌های قدیمی‌تر خیلی پیچیده‌تر بود!).
+                </p>
+            </div>
+
+            <h2><i class="fas fa-question-circle"></i> سوالات متداول</h2>
+
+            <h3>آیا HTML سخت است؟</h3>
+            <p>
+                نه! HTML یکی از ساده‌ترین زبان‌های وب است. اگر بتوانید یک متن تایپ کنید، می‌توانید HTML یاد بگیرید. فقط نیاز به تمرین و صبر دارید.
+            </p>
+
+            <h3>چقدر طول می‌کشد تا HTML را یاد بگیرم؟</h3>
+            <p>
+                اصول پایه HTML را می‌توانید در یک هفته یاد بگیرید. اما برای تسلط کامل و یادگیری تمام تگ‌ها و قابلیت‌ها، چند هفته تا یک ماه زمان نیاز دارید. مهم این است که روزانه تمرین کنید!
+            </p>
+
+            <h3>آیا HTML به تنهایی کافی است؟</h3>
+            <p>
+                HTML تنها ساختار صفحه را می‌سازد. برای طراحی زیبا نیاز به <strong>CSS</strong> و برای قابلیت‌های تعاملی نیاز به <strong>JavaScript</strong> دارید. اما HTML اولین و مهم‌ترین قدم است!
+            </p>
+
+            <h3>چطور می‌توانم فایل HTML خودم را ببینم؟</h3>
+            <p>
+                فقط کافی است فایل <code>.html</code> خود را ذخیره کنید و روی آن دوبار کلیک کنید. مرورگر پیش‌فرض شما باز می‌شود و صفحه را نمایش می‌دهد. همین!
+            </p>
+
+            <h2><i class="fas fa-graduation-cap"></i> خلاصه این درس</h2>
+
+            <p>
+                در این درس با مفاهیم پایه HTML آشنا شدیم. بیایید مرور کنیم:
+            </p>
+
+            <div style="background: linear-gradient(135deg, rgba(227, 76, 38, 0.1), rgba(240, 101, 41, 0.05)); padding: 25px; border-radius: 12px; border-right: 5px solid var(--primary-color);">
+                <ul style="margin: 0;">
+                    <li><strong>HTML</strong> مخفف HyperText Markup Language است و یک زبان نشانه‌گذاری است</li>
+                    <li>HTML <strong>ساختار و محتوا</strong> صفحات وب را می‌سازد (مثل اسکلت بدن)</li>
+                    <li>HTML از <strong>تگ‌ها</strong> تشکیل شده که شامل تگ باز، محتوا و تگ بسته هستند</li>
+                    <li>بعضی تگ‌ها <strong>خودبسته</strong> هستند و نیاز به تگ بسته ندارند (مثل <code>&lt;br&gt;</code> و <code>&lt;img&gt;</code>)</li>
+                    <li>برای نوشتن HTML فقط یک <strong>ادیتور متن</strong> و یک <strong>مرورگر</strong> نیاز دارید</li>
+                    <li>اولین خط هر فایل HTML باید <code>&lt;!DOCTYPE html&gt;</code> باشد</li>
+                    <li>HTML5 جدیدترین نسخه HTML است و قابلیت‌های بیشتری دارد</li>
+                </ul>
+            </div>
+
+            <div class="note-box">
+                <div class="note-box-title">
+                    <i class="fas fa-forward"></i>
+                    در درس بعد...
+                </div>
+                <p style="margin: 0;">
+                    در درس بعدی با <strong>ساختار کامل یک صفحه HTML</strong> آشنا می‌شویم. یاد می‌گیریم که بخش‌های مختلف یک صفحه HTML چه کاری انجام می‌دهند و چگونه باید آن‌ها را به درستی استفاده کنیم. همچنین با تگ‌های <code>&lt;head&gt;</code>، <code>&lt;body&gt;</code>، <code>&lt;meta&gt;</code> و سایر تگ‌های مهم آشنا می‌شویم!
+                </p>
+            </div>
+
+            <div class="note-box success" style="margin-top: 30px;">
+                <div class="note-box-title">
+                    <i class="fas fa-trophy"></i>
+                    تبریک!
+                </div>
+                <p style="margin: 0;">
+                    شما اولین درس از دوره HTML5 را با موفقیت به پایان رساندید! 🎉 حالا آماده‌اید که به درس بعدی بروید و یادگیری خود را ادامه دهید. فراموش نکنید که تمرین کلید موفقیت است!
+                </p>
+            </div>
+        </div>
+
+        <!-- ناوبری -->
+        <div class="lesson-nav">
+            <a href="./index.html" class="nav-btn nav-btn-back">
+                <i class="fas fa-list"></i>
+                فهرست دروس
+            </a>
+            <a href="./lesson-02.html" class="nav-btn nav-btn-next">
+                درس بعد: ساختار اولیه HTML
+                <i class="fas fa-arrow-left"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- فوتر -->
+    <footer class="main-footer">
+        <div class="container">
+            <p class="copyright-text">
+                © 1404 وب آکادمی. تمامی حقوق محفوظ است.
+                <br>
+                <small style="opacity: 0.7; margin-top: 8px; display: block;">
+                    ساخته شده با <i class="fas fa-heart" style="color: #e34c26;"></i> و HTML5
+                </small>
+            </p>
+        </div>
+    </footer>
+
+    <!-- دکمه بازگشت به بالا -->
+    <button class="scroll-to-top" id="scrollToTop" aria-label="بازگشت به بالا">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Prism.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
+
+    <script>
+        // تم تاریک/روشن
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i><span>تم روشن</span>';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i><span>تم روشن</span>';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i><span>تم تاریک</span>';
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // دکمه بازگشت به بالا
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // کپی کد
+        function copyCode(button) {
+            const codeBlock = button.closest('.code-block');
+            const code = codeBlock.querySelector('code').textContent;
+            
+            navigator.clipboard.writeText(code).then(() => {
+                const originalHTML = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-check"></i> کپی شد!';
+                button.classList.add('copied');
+                
+                setTimeout(() => {
+                    button.innerHTML = originalHTML;
+                    button.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                console.error('خطا در کپی کردن:', err);
+                alert('متأسفانه کپی کردن با مشکل مواجه شد. لطفاً دوباره تلاش کنید.');
+            });
+        }
+
+        // ذخیره پیشرفت درس
+        function saveProgress() {
+            localStorage.setItem('html_lesson_1_completed', 'true');
+            
+            // به‌روزرسانی پیشرفت کل
+            let completedLessons = JSON.parse(localStorage.getItem('html_completed_lessons') || '[]');
+            if (!completedLessons.includes(1)) {
+                completedLessons.push(1);
+                localStorage.setItem('html_completed_lessons', JSON.stringify(completedLessons));
+                localStorage.setItem('html_course_progress', completedLessons.length);
+            }
+        }
+
+        // ذخیره پیشرفت هنگام اسکرول تا انتهای صفحه
+        let lessonCompleted = false;
+        window.addEventListener('scroll', () => {
+            if (!lessonCompleted) {
+                const scrollPosition = window.innerHeight + window.pageYOffset;
+                const documentHeight = document.documentElement.scrollHeight;
+                
+                // اگر کاربر به 90% صفحه رسید
+                if (scrollPosition >= documentHeight * 0.9) {
+                    lessonCompleted = true;
+                    saveProgress();
+                }
+            }
+        });
+
+        // ذخیره پیشرفت هنگام خروج از صفحه
+        window.addEventListener('beforeunload', saveProgress);
+
+        // نمایش پیام خوش‌آمدگویی
+        console.log('%c🎉 به درس اول دوره HTML5 خوش آمدید!', 'font-size: 18px; color: #e34c26; font-weight: bold;');
+        console.log('%c💡 نکته: برای کپی کردن کدها روی دکمه "کپی کد" کلیک کنید', 'font-size: 14px; color: #10b981;');
+    </script>
+</body>
+</html>
